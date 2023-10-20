@@ -1,28 +1,68 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 using WiseProject.Business.Abstract;
+using WiseProject.Models;
 
 namespace WiseProject.Business.Concrete
 {
     public class CurrentUserManager : ICurrentUserService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public CurrentUserManager(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
+        private UserManager<ApplicationUser> _userManager;
+        private ServiceManager _serviceManager;
 
-        private string GetClaim(string claim)
+        public CurrentUserManager(ServiceManager serviceManager)
         {
-            var userType = _httpContextAccessor.HttpContext.User.FindFirst(claim);
-
-            if (userType == null || !userType.Subject.IsAuthenticated)
-                return "";
-            return userType.Value;
+            _serviceManager = serviceManager;
+            _userManager = _serviceManager.GetUserManager();  
         }
 
         public string UserId()
         {
-            return GetClaim(ClaimTypes.NameIdentifier);
+            return _serviceManager.GetClaim(ClaimTypes.NameIdentifier);
+        }
+
+        public ApplicationUser GetUserById(string userId)
+        {
+            _userManager = _serviceManager.GetUserManager();
+            return _userManager.FindByIdAsync(userId).Result;
+        }
+
+        public ApplicationUser User()
+        {
+            return GetUserById(UserId());
+        }
+
+        public bool IsInRole(string role)
+        {
+            return _userManager.GetRolesAsync(User()).Result.ToList().Contains(role);
+        }
+
+        public bool IsAdmin()
+        {
+            return _userManager.GetRolesAsync(User()).Result.ToList().Contains("Admin");
+        }
+
+        public List<string> Roles()
+        {
+            return _userManager.GetRolesAsync(User()).Result.ToList();
+        }
+
+        public bool IsLogged()
+        {
+            if(_serviceManager.GetClaim(ClaimTypes.NameIdentifier)=="")
+                return false;
+            return true;
+        }
+
+        public bool IsUser()
+        {
+            return _userManager.GetRolesAsync(User()).Result.ToList().Contains("User");
+        }
+
+        public bool IsInstructor()
+        {
+            return _userManager.GetRolesAsync(User()).Result.ToList().Contains("Instructor");
         }
     }
 }

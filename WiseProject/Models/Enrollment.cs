@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace WiseProject.Models
 {
@@ -11,6 +12,7 @@ namespace WiseProject.Models
         [ForeignKey("AspNetUsers")]
         public string UserId { get; set; }
         //public User User { get; set; }
+        //public IdentityUser User { get; set; }
 
         [ForeignKey("Course")]
         public int CourseId { get; set; }

@@ -1,0 +1,44 @@
+﻿@model WiseProject.Models.Dto.CanEnroll
+
+<div class="col-lg-4">
+    <div class="row">
+        <div class="col-lg-12 col-md-6">
+            <div class="course-features mt-30">
+                <h4>Course Features </h4>
+                <ul>
+                    
+                    <li><i class="fa fa-clone"></i>Assignments : <span>@Model.CourseCount</span></li>
+
+                    <li><i class="fa fa-user-o"></i>Students :  <span>@Model.EnrollmentCount</span></li>
+                </ul>
+                <div class="price-button pt-10">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (Model.IsEnrolled)
+                        {
+                            <span><b>Already Enrolled</b></span>
+                        }
+                        else
+                        {
+                            @using (Html.BeginForm("EnrollCourse", "Enrollment", new { id = Model.CourseId }))
+                            {
+                                <span>Price : <b>Free</b></span>
+                                <button class="main-btn" type="submit">Enroll Now</button>
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        
+                            <span>Price : <b>Free</b></span>
+                        <input type="button" class="main-btn" onclick="location.href='/Identity/Account/Login/';" value="Login" />
+                            
+                        
+                    }
+
+                </div>
+            </div> <!-- course features -->
+        </div>
+    </div>
+</div>

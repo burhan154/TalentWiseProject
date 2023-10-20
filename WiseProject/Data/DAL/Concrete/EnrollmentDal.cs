@@ -6,5 +6,6 @@ namespace WiseProject.DAL.Abstract
 {
     public class EnrollmentDal : EfEntityRepositoryBase<Enrollment, ApplicationDbContext>, IEnrollmentDal
     {
+        
     }
 }

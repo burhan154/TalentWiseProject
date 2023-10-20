@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WiseProject.Models;
 using System.Linq.Expressions;
+using WiseProject.Data;
 
 namespace WiseProject.DAL.EntityFramework
 {
@@ -8,6 +9,13 @@ namespace WiseProject.DAL.EntityFramework
     where TEntity : class, IEntity, new()
     where TContext : DbContext, new()
     {
+
+        /*private readonly ApplicationDbContext _database;
+        public EfEntityRepositoryBase(ApplicationDbContext database)
+        {
+            _database = database;
+        }*/
+
         public void Add(TEntity entity)
         {
             using (var context = new TContext())

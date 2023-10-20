@@ -1,4 +1,5 @@
-﻿using WiseProject.Business.Abstract;
+﻿using Microsoft.AspNetCore.Identity;
+using WiseProject.Business.Abstract;
 using WiseProject.Business.Constants;
 using WiseProject.DAL.Abstract;
 using WiseProject.Data.Results;
@@ -9,6 +10,8 @@ namespace WiseProject.Business.Concrete
     public class AssignmentManager : IAssignmentService
     {
         IAssignmentDal _assignmentDal;
+        //readonly UserManager<IdentityUser> _userManager;
+
         public AssignmentManager(IAssignmentDal assignmentDal)
         {
             _assignmentDal = assignmentDal;
@@ -16,6 +19,7 @@ namespace WiseProject.Business.Concrete
 
         public Data.Results.IResult Add(Assignment assignment)
         {
+            
             _assignmentDal.Add(assignment);
             return new SuccessResult();
         }
@@ -48,6 +52,10 @@ namespace WiseProject.Business.Concrete
         {
             _assignmentDal.Update(assignment);
             return new SuccessResult();
+        }
+        public int Count(int courseId)
+        {
+            return _assignmentDal.GetList(x => x.CourseId == courseId).Count();
         }
     }
 }

@@ -1,8 +1,75 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿<div class="search-box">
+    <div class="serach-form">
+        <div class="closebtn">
+            <span></span>
+            <span></span>
+        </div>
+        <form action="#">
+            <input type="text" placeholder="Search by keyword">
+            <button><i class="fa fa-search"></i></button>
+        </form>
+    </div> <!-- serach form -->
 </div>
+
+<section id="slider-part-3" class="bg_cover" style="background-image: url(images/slider/s-3.jpg)">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="slider-cont-3 text-center">
+                    <h2>Search for prefered courses</h2>
+                    <span>More then 3000+ courses for you</span>
+                    <div class="slider-search mt-45">
+                        <form id="searchForm" asp-action="Index" asp-controller="Course" method="get">
+                            <div class="row no-gutters">
+
+                                <div class="col-sm-9">
+                                    <input id="text" type="text" placeholder="Search keyword" name="query">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="main-btn">Search Now</button>
+                                </div>
+                            </div> <!-- row -->
+                        </form>
+                    </div>
+                </div> <!-- slider cont3 -->
+            </div>
+        </div> <!-- row -->
+        <div class="slider-feature pt-30 d-none d-md-block">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="singel-slider-feature justify-content-center mt-30">
+                        <div class="icon">
+                            <img src="images/all-icon/man.png" alt="icon">
+                        </div>
+                        <div class="cont">
+                            <h3>13,0000</h3>
+                            <span>Worldwide Students</span>
+                        </div>
+                    </div> <!-- singel slider feature -->
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="singel-slider-feature justify-content-center mt-30">
+                        <div class="icon">
+                            <img src="images/all-icon/book.png" alt="icon">
+                        </div>
+                        <div class="cont">
+                            <h3>4,000509</h3>
+                            <span>Available Courses</span>
+                        </div>
+                    </div> <!-- singel slider feature -->
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="singel-slider-feature justify-content-center mt-30">
+                        <div class="icon">
+                            <img src="images/all-icon/expert.png" alt="icon">
+                        </div>
+                        <div class="cont">
+                            <h3>Expert Instructor</h3>
+                            <span>Expert Instructors</span>
+                        </div>
+                    </div> <!-- singel slider feature -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- slider feature -->
+    </div> <!-- container -->
+</section>

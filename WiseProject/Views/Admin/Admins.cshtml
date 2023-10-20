@@ -1,0 +1,110 @@
+﻿@model WiseProject.Models.Dto.UserRole
+@{
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <!-- ======= Sidebar ======= -->
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Users</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+
+
+                        <!-- Top Selling -->
+                        <div class="col-12">
+                            <div class="card top-selling overflow-auto">
+
+
+
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title">User List</h5>
+
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">E-Mail</th>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Users)
+                                            {
+
+                                                <tr>
+                                                    <th scope="row"><i class="bi bi-person"></i></th>
+                                                    <td><a href="#" class="text-primary fw-bold">@item.FirstName @item.LastName</a></td>
+                                                    <td class="fw-bold">@item.Email</td>
+                                                    <td class="fw-bold">@item.Id</td>
+                                                    
+
+
+                                                        <form asp-action="ChangeRole" asp-controller="Admin" method="post">
+                                                    <td class="fw-bold">
+                                                            <select name="role" class="form-select" aria-label="Default select">
+                                                                @foreach (var role in Model.Roles)
+                                                                {
+                                                                    @if (Model.CurrentRole.Equals(role.Name))
+                                                                    {
+                                                                        <option selected value="@role.Name">@role.Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@role.Name">@role.Name</option>
+                                                                    }
+
+                                                                }
+                                                        </select>
+                                                    </td>
+                                                            <input hidden name="id" value="@item.Id" />
+                                                    <td class="fw-bold"><button type="submit" type="button" class="btn btn-danger btn-sm">Change</button></td>
+
+
+                                                        </form>
+
+                                                    
+                                                       
+                                                   
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div><!-- End Top Selling -->
+
+                    </div>
+                </div><!-- End Left side columns -->
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+
+
+</body>

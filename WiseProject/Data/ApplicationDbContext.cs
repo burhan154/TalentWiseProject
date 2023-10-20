@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WiseProject.Models;
 
 namespace WiseProject.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public ApplicationDbContext() : base()
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-WiseProject-68b33dd6-b292-484e-a18c-23bdfd2b3f8d;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Server=group4.database.windows.net;Database=group4;User Id=adminTest;Password=123456789b*;Trusted_Connection=False;MultipleActiveResultSets=true");
         }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

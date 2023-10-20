@@ -12,7 +12,7 @@ namespace WiseProject.Business.Constants
         public static string SuccessfulLogin = "Successful Login.";
         public static string WrongPassword = "Wrong Password.";
         public static string UserAlreadyExists = "User Already Exists.";
-        internal static string ItemsListed;
-        internal static string ItemNotFound;
+        public static string ItemsListed = "Items Listed";
+        public static string ItemNotFound = "Item Not Found";
     }
 }

@@ -1,0 +1,66 @@
+﻿
+@model List<WiseProject.Models.Course>
+
+
+
+
+<section id="course-part" class="pt-115 pb-120 gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title pb-45">
+                    <h5>Our course</h5>
+                    <h2>Featured courses </h2>
+                </div> <!-- section title -->
+            </div>
+        </div> <!-- row -->
+        <div class="row course-slied mt-30">
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="singel-course mt-30 h-100">
+                            <div class="thum">
+                                <div class="image">
+                                    <img src="@item.ImageUrl" alt="Course">
+                                </div>
+                                <div class="price">
+                                    <span>Free</span>
+                                </div>
+                            </div>
+                            <div class="cont">
+                                <div style="height: 180px;">
+                                    <a asp-action="Details" asp-route-id="@item.Id"><h4>@item.Title</h4></a>
+
+                                    <br>
+                                    <span>@item.Description</span>
+                                </div>
+                                <div class="course-teacher">
+                                    <div class="thum">
+                                        <a href="#"><img src="images/course/teacher/t-1.jpg" alt="teacher"></a>
+                                    </div>
+                                    <div class="name">
+                                        <a href="#"><h6>@item.User.FirstName @item.User.LastName</h6></a>
+                                    </div>
+                                    <div class="admin">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-user"></i><span>@item.EnrollmentCount</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- singel course -->
+                    </div>
+
+                }
+
+            }
+
+
+
+        </div> <!-- course slied -->
+    </div> <!-- container -->
+</section>

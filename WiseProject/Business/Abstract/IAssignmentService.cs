@@ -12,5 +12,7 @@ namespace WiseProject.Business.Abstract
         IResult Add(Assignment enrollment);
         IResult Update(Assignment enrollment);
         IResult Delete(int enrollmentId);
+
+        int Count(int courseId);
     }
 }

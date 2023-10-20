@@ -6,5 +6,6 @@ namespace WiseProject.DAL.Abstract
 {
     public class CourseDal : EfEntityRepositoryBase<Course, ApplicationDbContext>, ICourseDal
     {
+        
     }
 }

@@ -10,7 +10,7 @@ namespace WiseProject.Models
 
         //[ForeignKey("AspNetUsers")]
         public string UserId { get; set; }
-        //public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [Required]
         [MaxLength(150)]
@@ -32,5 +32,7 @@ namespace WiseProject.Models
         public string ImageUrl { get; set; }
 
         public List<Assignment> Assignment { get; set; }
+        public List<Enrollment> Enrollment { get; set; }
+
     }
 }
